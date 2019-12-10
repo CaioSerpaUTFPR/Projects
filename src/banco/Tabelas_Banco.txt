@@ -1,0 +1,10 @@
+CREATE TABLE detalhes(id int(4) AUTO_INCREMENT,problema_encontrado VARCHAR(100) NOT NULL,data_compra DATE NOT NULL,data_reclamacao DATE NOT NULL,garantia int(4) NOT NULL,situacao_problema VARCHAR(100) NOT NULL,circunstancias VARCHAR(100) NOT NULL,efeitos_colaterais VARCHAR(100) NOT NULL,PRIMARY KEY (id));#
+CREATE TABLE solucao(id int(4) AUTO_INCREMENT,descricao varchar(100) NOT NULL,tempo_media int(4) NOT NULL,PRIMARY KEY (id));#
+CREATE TABLE funcionario(id int(4) AUTO_INCREMENT,nome varchar(50) NOT NULL,rg varchar(15) NOT NULL,PRIMARY KEY (id));#
+CREATE TABLE consumidor(id int(4) AUTO_INCREMENT,nome varchar(50) NOT NULL,rg varchar(15) NOT NULL,cpf varchar(15) NOT NULL,endereco varchar(50) NOT NULL,PRIMARY KEY (id));#
+CREATE TABLE reclamacao(id int(4) AUTO_INCREMENT,tipo varchar(50) NOT NULL,natureza_problema varchar(50) NOT NULL,prazo_solucao int(4) NOT NULL,procedimentos_adotados varchar(100) NOT NULL,consumidorID int,detalhesID int,funcionarioID int,PRIMARY KEY (id),FOREIGN KEY (detalhesID) REFERENCES detalhes(id),FOREIGN KEY (funcionarioID) REFERENCES funcionario(id),FOREIGN KEY (consumidorID) REFERENCES consumidor(id));#
+CREATE TABLE processo(id int(4) AUTO_INCREMENT,normas_empresa varchar(50) NOT NULL,status varchar(50) NOT NULL,reclamacaoID int,solucaoID int,PRIMARY KEY (id),FOREIGN KEY (reclamacaoID) REFERENCES reclamacao(id),FOREIGN KEY (solucaoID) REFERENCES solucao(id));#
+INSERT INTO funcionario (nome, rg) VALUES ('Funcionario 1', '111111111');# 
+INSERT INTO funcionario (nome, rg) VALUES ('Funcionario 2', '222222222');#
+INSERT INTO funcionario (nome, rg) VALUES ('Funcionario 3', '333333333');
+
